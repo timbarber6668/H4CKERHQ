@@ -621,4 +621,36 @@ const SKILL_TREE = [
     ],
   },
 
+  // ── NODE 5 ── Code Archaeology ──────────────────────────────────
+  {
+    id: 'archaeology', track: 'core', title: 'Code Archaeology', icon: '🔎',
+    blurb: 'security researchers read code like detectives. comments, hints, hidden functions — learn to spot them.',
+    requires: ['clientside'], defense: 8,
+    flex: "Find easter eggs, hidden functions, and debug hints that real coders leave behind. Security research 101.",
+    tasks: [
+      { type: 'flashcard', vocab: 'function' },
+      { type: 'quiz', question: 'Why would a developer leave a comment in their code?',
+        options: ['To confuse hackers', 'To explain what the code does (or what they were debugging)', 'Comments don\'t matter'],
+        answer: 1, explain: 'Comments are breadcrumbs. Some explain logic. Some are TODOs. Some accidentally leak hints about vulns or hidden features.' },
+      { type: 'spot', prompt: 'Tap every hint a security researcher would zoom in on.',
+        tokens: [
+          {t:'// TODO: fix this', flag:true, tip:'A TODO is a breadcrumb. The dev admitted something isn\'t right here.'},
+          {t:'if (debugMode)', flag:true, tip:'Debug mode left in production? Turn it on in the console and see what unlocks.'},
+          {t:'function hiddenAdminPanel()', flag:true, tip:'A function with "hidden" in the name is a red flag. Grep for it, call it from the console.'},
+          {t:'.then(data => console.log(data))', flag:true, tip:'A console.log left in production = the dev was debugging and forgot. The data passing through is exposed.'} ],
+        hints: ['TODOs, debug flags, function names with "hidden" or "admin" — all hints.', 'Any console.log left in code is a mistake. You can see what it logs.'] },
+      { type: 'real', target: 'observe',
+        prompt: 'Open the source of your own game (Cmd+U). Find the HTML comment at the top. What is CLUE #1 asking you to do?',
+        answer: 'H.cheat',
+        accept: ['h.cheat', 'cheat'],
+        hints: [
+          'Right-click the page → "View Page Source"',
+          'Scroll to the top — there\'s an HTML comment in a box.',
+          'Read CLUE #1. What function/command is it asking you to use? (ignore the quotes and parameters, just the function name)'] },
+      { type: 'quiz', question: 'When you find a hidden function like partyMode() in the code, what\'s your next move?',
+        options: ['Report it to the developer immediately', 'Call it from the console and observe what happens', 'Delete it from the .js file'],
+        answer: 1, explain: 'Open the console and call it. See what it does. That\'s recon. You\'re a researcher, not a saboteur.' },
+    ],
+  },
+
 ];
