@@ -52,7 +52,7 @@ H.route('map', function () {
   const tracks = { core: 'CORE TRAINING', offense: '⚔ OFFENSE', defense: '🛡 DEFENSE' };
   let nodesHTML = '';
   let prevTrack = null;
-  const FIRST_N_VISIBLE = 3; // ← hint: change this to unlock more lessons at once
+  const FIRST_N_VISIBLE = 4; // ← hint: change this to unlock more lessons at once
 
   SKILL_TREE.forEach((node, idx) => {
     if (node.track !== prevTrack) {
