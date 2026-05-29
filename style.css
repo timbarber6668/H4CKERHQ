@@ -66,6 +66,9 @@ pre,code{font-family:var(--mono)}
 .node.open:hover{border-color:var(--cyan);transform:translateX(3px)}
 .node.done{border-color:var(--green-dim)}
 .node.locked{opacity:.45}
+/* ← FUTURE CONTENT: nodes with class="future-content" are blurred & unclickable */
+/* inspect the page, find these nodes in DevTools, ask: why are they here? how could you unlock them? */
+.node.future-content{filter:blur(5px);opacity:.3;pointer-events:none;cursor:not-allowed}
 .node-icon{font-size:1.7rem;width:48px;height:48px;display:flex;align-items:center;justify-content:center;
   background:var(--bg);border:1px solid var(--border);border-radius:10px;flex-shrink:0}
 .node.done .node-icon{color:var(--green);border-color:var(--green-dim)}

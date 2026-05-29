@@ -52,7 +52,9 @@ H.route('map', function () {
   const tracks = { core: 'CORE TRAINING', offense: '⚔ OFFENSE', defense: '🛡 DEFENSE' };
   let nodesHTML = '';
   let prevTrack = null;
-  SKILL_TREE.forEach(node => {
+  const FIRST_N_VISIBLE = 3; // ← hint: change this to unlock more lessons at once
+
+  SKILL_TREE.forEach((node, idx) => {
     if (node.track !== prevTrack) {
       nodesHTML += `<div class="track-label">${tracks[node.track] || node.track}</div>`;
       prevTrack = node.track;
@@ -62,8 +64,13 @@ H.route('map', function () {
     const cls = done ? 'done' : open ? 'open' : 'locked';
     const tasksTotal = node.tasks.length;
     const tasksDone = node.tasks.filter((_, i) => H.taskDone(node.id, i)).length;
+
+    // ← HIDDEN LESSON CHECK: nodes beyond FIRST_N_VISIBLE are blurred (but still in the DOM!)
+    // inspect the page, find nodes with class="node future-content", and ask: why is this here?
+    const isFuture = idx >= FIRST_N_VISIBLE ? 'future-content' : '';
+
     nodesHTML += `
-      <div class="node ${cls}" ${open ? `onclick="H.go('#lesson/${node.id}')"` : ''}>
+      <div class="node ${cls} ${isFuture}" ${open ? `onclick="H.go('#lesson/${node.id}')"` : ''}>
         <div class="node-icon">${done ? '✓' : open ? node.icon : '🔒'}</div>
         <div class="node-body">
           <div class="node-title">${node.title} ${node.wave ? '<span class="boss-tag">⚠ BOSS</span>' : ''}</div>
