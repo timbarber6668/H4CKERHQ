@@ -52,7 +52,7 @@ H.route('map', function () {
   const tracks = { core: 'CORE TRAINING', offense: '⚔ OFFENSE', defense: '🛡 DEFENSE' };
   let nodesHTML = '';
   let prevTrack = null;
-  const FIRST_N_VISIBLE = 4; // ← hint: change this to unlock more lessons at once
+  window.FIRST_N_VISIBLE = window.FIRST_N_VISIBLE || 4; // ← hint: in console, type: window.FIRST_N_VISIBLE = 10, then H.go('#map')
 
   SKILL_TREE.forEach((node, idx) => {
     if (node.track !== prevTrack) {
@@ -65,10 +65,10 @@ H.route('map', function () {
     const tasksTotal = node.tasks.length;
     const tasksDone = node.tasks.filter((_, i) => H.taskDone(node.id, i)).length;
 
-    // ← DYNAMIC BLUR: always show first 3 lessons, then only show unlocked/completed ones
+    // ← DYNAMIC BLUR: always show first N lessons, then only show unlocked/completed ones
     // blurred lessons are still in the DOM — inspect them & ask why they're hidden!
     // as you complete lessons, the blur lifts on the next locked lesson.
-    const alwaysVisible = idx < FIRST_N_VISIBLE;
+    const alwaysVisible = idx < window.FIRST_N_VISIBLE;
     const isFuture = !alwaysVisible && !open ? 'future-content' : '';
 
     nodesHTML += `
