@@ -143,7 +143,12 @@ const H = (function () {
   // routes: #map (default) | #lesson/<id> | #manual | #armory | #threats
   const routes = {};
   function route(name, fn) { routes[name] = fn; }
-  function go(hash) { location.hash = hash; }
+  function go(hash) {
+    // If we're already on this hash, the browser won't fire 'hashchange',
+    // so re-render manually. (This is why H.go('#map') from the map now works.)
+    if (('#' + hash.replace(/^#/, '')) === location.hash) { dispatch(); }
+    else { location.hash = hash; }
+  }
   function dispatch() {
     // First-time players get the full intro: boring site → attack → breach → premise → pledge.
     if (!state.pledged) { if (window.startIntro) window.startIntro(); return; }
