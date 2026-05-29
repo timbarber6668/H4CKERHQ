@@ -302,22 +302,19 @@ function breachToPremise() {
   const wrap = document.getElementById('bsPremise');
   wrap.classList.add('show');
   const lines = [
-    { t: 'your system just got breached.', c: 'bigred' },
-    { t: 'that wasn\'t bad luck. your tower had holes —', c: 'white' },
-    { t: 'no walls. no checks. secrets sitting in plain sight.', c: 'dim' },
-    { t: 'every system starts this exposed. yours. mine. the pros\'.', c: 'white' },
-    { t: 'here\'s the good part:', c: 'cyan' },
-    { t: 'every hole they just walked through is a skill YOU can learn.', c: 'green' },
-    { t: 'this app turns each one into a level — learn it, patch it,', c: 'green' },
-    { t: 'and watch the next attack bounce off your wall.', c: 'green' },
-    { t: 'ready to stop being the target?', c: 'cyan' },
+    { t: 'you just got h4cked.', c: 'bigred' },
+    { t: '(yeah, you suck. we all did at first.)', c: 'dim' },
+    { t: 'but here\'s the plot twist:', c: 'cyan' },
+    { t: 'every hole they just walked through is a skill you can learn.', c: 'green' },
+    { t: 'patch it. understand it. watch the next attack bounce off.', c: 'green' },
+    { t: 'ready to stop losing?', c: 'cyan' },
   ];
   let i = 0;
   (function step() {
     if (i >= lines.length) {
       const btn = document.createElement('button');
       btn.className = 'btn-primary cut-btn';
-      btn.textContent = 'BUILD MY DEFENSES →';
+      btn.textContent = 'L34RN N0W →';
       btn.onclick = () => { H.showPledge(); };   // recruit them as a white hat, then → map
       wrap.appendChild(btn);
       return;
