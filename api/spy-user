@@ -1,0 +1,18 @@
+{
+  "username": "jake_h4ck3r",
+  "avatar_url": "/assets/default-avatar.png",
+  "display_name": "Jake",
+  "joined": "2023-09-14",
+  "role": "admin",
+  "internal_rank": "GHOST_TIER",
+  "internal_score": 94820,
+  "can_access_beta": true,
+  "plan_override": "free",
+  "stripe_customer_id": "cus_H4CK3R9999",
+  "flags": {
+    "early_adopter": true,
+    "beta_tester": true,
+    "debug_mode": true
+  },
+  "_note": "this endpoint should require auth — it doesn't. classic."
+}
