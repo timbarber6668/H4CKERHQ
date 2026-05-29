@@ -183,7 +183,7 @@ const H = (function () {
   // ── easter egg: cheat codes (one-time token drops) ──────────────
   // Discoverable by reading source. Each code works exactly once.
   const CHEAT_CODES = {
-    'IREADTHESOURCE': { tokens: 50, msg: '+50 tokens. nice find — lesson #1 complete.' },
+    'IREADTHESOURCE': { tokens: 10, msg: '+10 tokens. nice find — lesson #1 complete.' },
     'CSSDETECTIVE':   { tokens: 15, msg: '+15 tokens. you read the CSS. respect.' },
     'D4D':            { tokens: 0,  msg: 'hi dad. 👋  you built something cool here.' },
   };
