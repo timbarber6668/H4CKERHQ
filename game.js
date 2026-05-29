@@ -65,9 +65,11 @@ H.route('map', function () {
     const tasksTotal = node.tasks.length;
     const tasksDone = node.tasks.filter((_, i) => H.taskDone(node.id, i)).length;
 
-    // ← HIDDEN LESSON CHECK: nodes beyond FIRST_N_VISIBLE are blurred (but still in the DOM!)
-    // inspect the page, find nodes with class="node future-content", and ask: why is this here?
-    const isFuture = idx >= FIRST_N_VISIBLE ? 'future-content' : '';
+    // ← DYNAMIC BLUR: always show first 3 lessons, then only show unlocked/completed ones
+    // blurred lessons are still in the DOM — inspect them & ask why they're hidden!
+    // as you complete lessons, the blur lifts on the next locked lesson.
+    const alwaysVisible = idx < FIRST_N_VISIBLE;
+    const isFuture = !alwaysVisible && !open ? 'future-content' : '';
 
     nodesHTML += `
       <div class="node ${cls} ${isFuture}" ${open ? `onclick="H.go('#lesson/${node.id}')"` : ''}>
